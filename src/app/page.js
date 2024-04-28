@@ -1,22 +1,27 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import nextJsCourse from "../../course.json";
+import Lesson from "./lesson.js";
 
-export default function Home() {
+async function getAllCourses() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(nextJsCourse), 1000);
+  });
+}
+
+export default async function Home() {
+  const courses = await getAllCourses();
+
   return (
     <main className={styles.main}>
-      <h2>{nextJsCourse.title}</h2>
+      <h2>{courses.title}</h2>
       <br></br>
 
       <ul>
-        {nextJsCourse.lessons.map((lesson) => {
+        {courses.lessons.map((lesson) => {
           return (
             <li key={lesson.id}>
-              <h3>{lesson.title}</h3>
-
-              {lesson.points.map((point) => {
-                return <p key={lesson.point}> {point}</p>;
-              })}
+              <Lesson title={lesson.title} points={lesson.points} />
             </li>
           );
         })}
