@@ -1,10 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import nextJsCourse from "../../course.json";
-import Lesson from "./lesson.js";
+import Lesson from "./coponents/lesson.js";
+import Shape from "./coponents/shape";
 
 import dynamic from "next/dynamic";
-const ClientComponent = dynamic(() => import("./someClien.js"), {
+const ClientComponent = dynamic(() => import("./coponents/someClien.js"), {
   ssr: false,
 });
 
@@ -28,15 +29,17 @@ export default async function Home() {
       <h1>React</h1>
       <ClientComponent />
 
-      <ul>
+      <ul className={styles.list}>
         {courses.lessons.map((lesson) => {
           return (
-            <li key={lesson.id}>
+            <li key={lesson.id} className={styles.list_item}>
               <Lesson title={lesson.title} points={lesson.points} />
             </li>
           );
         })}
       </ul>
+
+      <Shape />
     </main>
   );
 }

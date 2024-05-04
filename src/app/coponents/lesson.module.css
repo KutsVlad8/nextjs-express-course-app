@@ -1,0 +1,17 @@
+.layout {
+  background-color: tomato;
+}
+
+.title {
+  color: blue;
+}
+
+.button {
+  background-color: green;
+  color: white;
+}
+
+.text {
+  color: aqua;
+  font-size: 30px;
+}
